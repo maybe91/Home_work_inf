@@ -1,3 +1,10 @@
+'''Proszę napisać program, który pobierze od użytkownika 5
+ różnych liczb całkowitych i doda je do listy. 
+ Program ma za zadanie uzupełnić listę liczbami całkowitymi znajdującymi się
+ pomiędzy kolejnymi liczbami a następnie wypisać listę. Przykładowe dane wejściowe: 
+[0,7,13,8,12], pożądane wyjście: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,12,11,10,9,8,9,10,11,12]. 
+Należy obsłużyć wyjątek, w którym dwie sąsiadujące ze sobą wprowadzone przez 
+użytkownika liczby są takie same.'''
 list_1 = []
 list_2 = []
 
