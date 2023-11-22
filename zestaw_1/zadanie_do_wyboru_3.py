@@ -25,6 +25,7 @@ def iloczyn_macierzym1m2(macierz_1, macierz_2):
     # Sprawdzamy czy można przemnożyć macierzy
     if len(macierz_1[0]) != len(macierz_2):
         print("Nie można mnożyc: ilość kolumn pierwszej macierzy nie jest równa ilości wierszy drugiej macierzy.")
+        print('*' * 160)
         return None
 
     # Macierz - iloczyn macierzy m1*m2
@@ -37,6 +38,7 @@ def iloczyn_macierzym1m2(macierz_1, macierz_2):
             for k in range(len(macierz_2)):
                 result[i][j] += macierz_1[i][k] * macierz_2[k][j]
     print("iloczyn macierzy 1 i macierzy 2:", result)
+    print('*' * 160)
     return
 
 
@@ -44,6 +46,7 @@ def iloczyn_macierzym2m1(macierz_1, macierz_2):
     # Sprawdzamy czy można przemnożyć macierzy
     if len(macierz_2[0]) != len(macierz_1):
         print("Nie można mnożyc: ilość kolumn drugiej macierzy nie jest równa ilości wierszy pierwszej macierzy.")
+        print('*' * 160)
         return None
 
     # Macierz - iloczyn macierzy m1*m2
@@ -56,38 +59,44 @@ def iloczyn_macierzym2m1(macierz_1, macierz_2):
             for k in range(len(macierz_1)):
                 result[i][j] += macierz_2[i][k] * macierz_1[k][j]
     print("iloczyn macierzy 2 i macierzy 1:", result)
+    print('*' * 160)
     return
 
 
-def determinant(matrix):
-    rozmiar = len(matrix)
+def determinant(macierz):
+    rozmiar = len(macierz)
 
     # Jeśli rozmiar macierzy 2x2, używamy formułę dla wyznaczenia wyznacznika
     if rozmiar == 2:
-        det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        det = macierz[0][0] * macierz[1][1] - macierz[0][1] * macierz[1][0]
         return det
 
     det = 0
     for i in range(rozmiar):
-        # Szukamy minor dla elementa matrix[0][i]
-        minor = [[matrix[row][col] for col in range(
-            rozmiar) if col != i] for row in range(1, rozmiar)]
+        # Szukamy minor dla elementa macierzy[0][i]
+        minor = [[macierz[wiersz][kolumna] for kolumna in range(
+            rozmiar) if kolumna != i] for row in range(1, rozmiar)]
 
         # Szukamy wyznacznik rekurencyjnie dla każdego minora
-        det += ((-1) ** i) * matrix[0][i] * determinant(minor)
+        det += ((-1) ** i) * macierz[0][i] * determinant(minor)
 
     return det
 
 
-def wyznacnick(macierz_2, macierz_1):
+def wyznacnick(macierz_1, macierz_2):
     if len(macierz_2) != len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
         print("Wyznacznik się liczy tulko dla macierzy kwadratowych")
+        print('*' * 160)
         return
     elif len(macierz_2) == len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
         det_last = determinant(macierz_2)
+        print("można obliczyć wyznacznik tylko drugiej macierzy:", det_last)
+        print('*' * 160)
         return det_last
-    elif len(macierz_2) != len(macierz_2[0]) and len(macierz_1) == len(macierz_1[0]):
+    elif len(macierz_1) == len(macierz_1[0]) and len(macierz_2) != len(macierz_2[0]):
         det_last = determinant(macierz_1)
+        print("można obliczyć wyznacznik tylko pierwszej macierzy:", det_last)
+        print('*' * 160)
         return det_last
     else:
         # Liczymy wyznacznik
@@ -95,17 +104,23 @@ def wyznacnick(macierz_2, macierz_1):
         det2 = determinant(macierz_2)
         det_last = det1 + det2
         print("Wyznacnik macierzy:", det_last)
+        print('*' * 160)
         return det_last
 
 
 def mnożenie_macierzy_przez_skalar(macierz_1, macierz_2):
+    # mnożenie pierwszej macierzy przez skalar
     for i in range(len(macierz_1)):
         for j in range(len(macierz_1[0])):
             macierz_1[i][j] = det_last * macierz_1[i][j]
+    # mnożenie drugiej macierzy przez skalar
     for k in range(len(macierz_2)):
         for l in range(len(macierz_2[0])):
             macierz_2[k][l] = det_last * macierz_2[k][l]
-    print(macierz_1, macierz_2)
+    print("wyznacznik razy pierwsza macierz:", macierz_1)
+    print('*' * 160)
+    print("wyznacznik razy druga macierz:", macierz_2)
+    print('*' * 160)
     return
 
 
