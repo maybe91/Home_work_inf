@@ -75,7 +75,7 @@ def determinant(macierz):
     for i in range(rozmiar):
         # Szukamy minor dla elementa macierzy[0][i]
         minor = [[macierz[wiersz][kolumna] for kolumna in range(
-            rozmiar) if kolumna != i] for row in range(1, rozmiar)]
+            rozmiar) if kolumna != i] for wiersz in range(1, rozmiar)]
 
         # Szukamy wyznacznik rekurencyjnie dla każdego minora
         det += ((-1) ** i) * macierz[0][i] * determinant(minor)
@@ -124,6 +124,10 @@ def mnożenie_macierzy_przez_skalar(macierz_1, macierz_2):
     return
 
 
+print('macierz jeden:', macierz_1)
+print("*" * 160)
+print('macierz dwa:', macierz_2)
+print("*" * 160)
 iloczyn_macierzym1m2(macierz_1, macierz_2)
 iloczyn_macierzym2m1(macierz_1, macierz_2)
 det_last = wyznacnick(macierz_1, macierz_2)
