@@ -1,4 +1,3 @@
-
 # tworzenie pierwszej macierzy
 kolumna_1 = int(input("wpisz ilośc kolumn macierzy 1: "))
 wiersz_1 = int(input("Wpisz ilość wierszy macierzy 1: "))
@@ -22,13 +21,13 @@ for i in range(wiersz_2):
     macierz_2.append(wiersz)
 
 
-def iloczyn_macierzy(macierz_1, macierz_2):
+def iloczyn_macierzym1m2(macierz_1, macierz_2):
     # Sprawdzamy czy można przemnożyć macierzy
     if len(macierz_1[0]) != len(macierz_2):
         print("Nie można mnożyc: ilość kolumn pierwszej macierzy nie jest równa ilości wierszy drugiej macierzy.")
         return None
 
-    # Macierz - iloczyn macierzy
+    # Macierz - iloczyn macierzy m1*m2
     result = [[0 for _ in range(len(macierz_2[0]))]
               for _ in range(len(macierz_1))]
 
@@ -37,7 +36,26 @@ def iloczyn_macierzy(macierz_1, macierz_2):
         for j in range(len(macierz_2[0])):
             for k in range(len(macierz_2)):
                 result[i][j] += macierz_1[i][k] * macierz_2[k][j]
-    print("iloczyn:", result)
+    print("iloczyn macierzy 1 i macierzy 2:", result)
+    return
+
+
+def iloczyn_macierzym2m1(macierz_1, macierz_2):
+    # Sprawdzamy czy można przemnożyć macierzy
+    if len(macierz_2[0]) != len(macierz_1):
+        print("Nie można mnożyc: ilość kolumn drugiej macierzy nie jest równa ilości wierszy pierwszej macierzy.")
+        return None
+
+    # Macierz - iloczyn macierzy m1*m2
+    result = [[0 for _ in range(len(macierz_1[0]))]
+              for _ in range(len(macierz_2))]
+
+    # Process mnożenia
+    for i in range(len(macierz_2)):
+        for j in range(len(macierz_1[0])):
+            for k in range(len(macierz_1)):
+                result[i][j] += macierz_2[i][k] * macierz_1[k][j]
+    print("iloczyn macierzy 2 i macierzy 1:", result)
     return
 
 
@@ -91,6 +109,7 @@ def mnożenie_macierzy_przez_skalar(macierz_1, macierz_2):
     return
 
 
-iloczyn_macierzy(macierz_1, macierz_2)
+iloczyn_macierzym1m2(macierz_1, macierz_2)
+iloczyn_macierzym2m1(macierz_1, macierz_2)
 det_last = wyznacnick(macierz_1, macierz_2)
 mnożenie_macierzy_przez_skalar(macierz_1, macierz_2)
