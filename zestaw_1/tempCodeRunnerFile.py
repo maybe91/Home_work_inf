@@ -1,1 +1,2 @@
-drugiej
+
+    plt.show()
