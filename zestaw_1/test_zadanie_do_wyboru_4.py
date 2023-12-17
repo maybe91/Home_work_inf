@@ -4,7 +4,7 @@ from zadanie_do_wyboru_4 import read_my_files
 
 class Test_Read_My_Files(unittest.TestCase):
 
-    def test_(self):
+    def test_read_my_files(self):
         self.assertRaises(FileNotFoundError, read_my_files,
                           r"C:/Users/Admin/Destop")
         self.assertRaises(FileNotFoundError, read_my_files,

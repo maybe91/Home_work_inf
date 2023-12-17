@@ -1,32 +1,16 @@
-# tworzenie pierwszej macierzy
-kolumna_1 = int(input("wpisz ilośc kolumn macierzy 1: "))
-wiersz_1 = int(input("Wpisz ilość wierszy macierzy 1: "))
-macierz_1 = []
-macierz_2 = []
 
-for i in range(wiersz_1):
-    wiersz = []
-    for i in range(kolumna_1):
-        wiersz.append(int(input("Wpisz element macierzy: ")))
-    macierz_1.append(wiersz)
-
-# tworzenie drugiej macierzy
-kolumna_2 = int(input("wpisz ilośc kolumn macierzy 2: "))
-wiersz_2 = int(input("Wpisz ilość wierszy macierzy 2: "))
-
-for i in range(wiersz_2):
-    wiersz = []
-    for i in range(kolumna_2):
-        wiersz.append(int(input("Wpisz element macierzy: ")))
-    macierz_2.append(wiersz)
+macierz_1 = [[1, 0], [0, 1]]
+macierz_2 = [[1, 2], [1, 2]]
 
 
 def iloczyn_macierzym1m2(macierz_1, macierz_2):
+    for i in range(len(macierz_1)):
+        if type(macierz_1[i]) != list:
+            raise TypeError("List must have only lists")
     # Sprawdzamy czy można przemnożyć macierzy
     if len(macierz_1[0]) != len(macierz_2):
-        print("Nie można mnożyc: ilość kolumn pierwszej macierzy nie jest równa ilości wierszy drugiej macierzy.")
-        print('*')
-        return None
+        raise ValueError(
+            "Nie można mnożyc: ilość kolumn pierwszej macierzy nie jest równa ilości wierszy drugiej macierzy.")
 
     # Macierz - iloczyn macierzy m1*m2
     result = [[0 for _ in range(len(macierz_2[0]))]
@@ -45,9 +29,8 @@ def iloczyn_macierzym1m2(macierz_1, macierz_2):
 def iloczyn_macierzym2m1(macierz_1, macierz_2):
     # Sprawdzamy czy można przemnożyć macierzy
     if len(macierz_2[0]) != len(macierz_1):
-        print("Nie można mnożyc: ilość kolumn drugiej macierzy nie jest równa ilości wierszy pierwszej macierzy.")
-        print('*')
-        return None
+        raise ValueError(
+            "Nie można mnożyc: ilość kolumn drugiej macierzy nie jest równa ilości wierszy pierwszej macierzy.")
 
     # Macierz - iloczyn macierzy m1*m2
     result = [[0 for _ in range(len(macierz_1[0]))]
@@ -85,9 +68,8 @@ def determinant(macierz):
 
 def wyznacznick(macierz_1, macierz_2):
     if len(macierz_2) != len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
-        print("Wyznacznik się liczy tulko dla macierzy kwadratowych")
-        print('*')
-        return
+        raise ValueError(
+            "Wyznacznik się liczy tulko dla macierzy kwadratowych")
     elif len(macierz_2) == len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
         det_last = determinant(macierz_2)
         print("można obliczyć wyznacznik tylko drugiej macierzy:", det_last)
@@ -122,6 +104,7 @@ def mnożenie_macierzy_przez_skalar(macierz_1, macierz_2):
     print("wyznacznik razy druga macierz:", macierz_2)
     print('*')
     return
+
 
 print("*")
 print('macierz jeden:', macierz_1)

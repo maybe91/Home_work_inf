@@ -1,13 +1,21 @@
 import matplotlib.pyplot as plt
-import random
+
+
+class Hetman:
+    def __init__(self, wiersz, kolumna):
+        self.wiersz = wiersz
+        self.kolumna = kolumna
 
 
 def czy_szachują_się_hetmany(dane):
+    for k in range(len(dane_1)):
+        if dane_1[k] != tuple:
+            raise TypeError("List must have only tuple type")
     # Sprawdzenie czy hetmany szachują się nawzajem
     for i in range(len(dane)):
         for j in range(i + 1, len(dane)):
             # Sprawdzenie czy hetmany znajdują się w tym samym rzędzie, kolumnie lub przekątnej
-            if dane[i][0] == dane[j][0] or dane[i][1] == dane[j][1] or abs(dane[i][0] - dane[j][0]) == abs(dane[i][1] - dane[j][1]):
+            if dane[i].wiersz == dane[j].wiersz or dane[i].kolumna == dane[j].kolumna or abs(dane[i].wiersz - dane[j].wiersz) == abs(dane[i].kolumna - dane[j].kolumna):
                 return False  # Zwraca False jeśli dwa hetmany się szachują
     return True  # Zwraca True jeśli żadne dwa hetmany się nie szachują
 
@@ -18,8 +26,8 @@ def szachownica(dane):
 
     # Wypełnienie szachownicy hetmanami
     for hetman in dane:
-        wiersz, kolumna = hetman
-        szachownica[wiersz][kolumna] = 'H'  # Oznaczenie hetmana jako 'H'
+        # Oznaczenie hetmana jako 'H'
+        szachownica[hetman.wiersz][hetman.kolumna] = 'H'
 
     # Rysowanie szachownicy z hetmanami
     fig, ax = plt.subplots(figsize=(8, 8))
@@ -27,11 +35,9 @@ def szachownica(dane):
                for row in range(100)], cmap='gray')
 
     # Dodanie hetmanów do szachownicy
-    for i in range(100):
-        for j in range(100):
-            if szachownica[i][j] == 'H':
-                ax.text(j, i, 'H', va='center', ha='center',
-                        color='red', fontsize=3)
+    for hetman in dane:
+        ax.text(hetman.kolumna, hetman.wiersz, 'H', va='center', ha='center',
+                color='red', fontsize=3)
 
     plt.xlabel('Kolumna')
     plt.ylabel('Wiersz')
@@ -41,20 +47,10 @@ def szachownica(dane):
     plt.show()
 
 
-# Przykładowe dane hetmanów
-dane_1 = [(1, 14), (99, 99), (2, 1), (4, 8)]
+# Przykładowe dane hetmanów jako obiekty klasy Hetman
+dane_1 = [Hetman(1, 14), Hetman(99, 99), Hetman(2, 1), Hetman(4, 8)]
 
-dane = []
-
-for i in range(random.randint(0, 100)):
-    dane.append((random.randint(0, 99), random.randint(0, 100)))
-
-print(dane)
 # Wywołanie funkcji i wyświetlenie wyniku
-wynik = czy_szachują_się_hetmany(dane)
-if wynik:
-    print("Żadne dwa hetmany się nie szachują.")
-else:
-    print("Co najmniej dwa hetmany się szachują.")
 
-szachownica(dane)
+
+szachownica(dane_1)
