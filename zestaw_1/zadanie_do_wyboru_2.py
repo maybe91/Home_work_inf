@@ -35,6 +35,3 @@ def zadanie(list_1):
         list_2.append(list_2[len(list_2) - 1] - 1)
     print(list_2)
     return list_2
-
-
-zadanie([1, 2, 3, 4, 5])

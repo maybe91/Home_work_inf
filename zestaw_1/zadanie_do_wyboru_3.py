@@ -67,7 +67,10 @@ def determinant(macierz):
 
 
 def wyznacznick(macierz_1, macierz_2):
-    if len(macierz_2) != len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
+    for i in range(len(macierz_1)):
+        if type(macierz_1[i]) != list:
+            raise TypeError("List must have only lists")
+    if len(macierz_2) != len(macierz_2[0]) or len(macierz_1) != len(macierz_1[0]):
         raise ValueError(
             "Wyznacznik się liczy tulko dla macierzy kwadratowych")
     elif len(macierz_2) == len(macierz_2[0]) and len(macierz_1) != len(macierz_1[0]):
@@ -106,16 +109,16 @@ def mnożenie_macierzy_przez_skalar(macierz_1, macierz_2):
     return
 
 
-print("*")
-print('macierz jeden:', macierz_1)
-print("*")
+# print("*")
+# print('macierz jeden:', macierz_1)
+# print("*")
 
-print('macierz dwa:', macierz_2)
-print("*")
+# print('macierz dwa:', macierz_2)
+# print("*")
 
-iloczyn_macierzym1m2(macierz_1, macierz_2)
+# iloczyn_macierzym1m2(macierz_1, macierz_2)
 
-iloczyn_macierzym2m1(macierz_1, macierz_2)
+# iloczyn_macierzym2m1(macierz_1, macierz_2)
 
 det_last = wyznacznick(macierz_1, macierz_2)
-mnożenie_macierzy_przez_skalar(macierz_1, macierz_2)
+# mnożenie_macierzy_przez_skalar(macierz_1, macierz_2)

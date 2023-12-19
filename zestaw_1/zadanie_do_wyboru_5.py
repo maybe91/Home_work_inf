@@ -21,6 +21,13 @@ def czy_szachują_się_hetmany(dane):
 
 
 def szachownica(dane):
+    for k in range(len(dane_1)):
+        if dane_1[k] != tuple:
+            raise TypeError("List must have only tuple type")
+    for k in range(len(dane_1)):
+        for i in range(2):
+            if dane_1[k][i] != int:
+                raise TypeError("Tuple must have only integer type")
     # Utworzenie pustej planszy szachownicy
     szachownica = [['.' for _ in range(100)] for _ in range(100)]
 
@@ -51,6 +58,3 @@ def szachownica(dane):
 dane_1 = [Hetman(1, 14), Hetman(99, 99), Hetman(2, 1), Hetman(4, 8)]
 
 # Wywołanie funkcji i wyświetlenie wyniku
-
-
-szachownica(dane_1)
